@@ -58,5 +58,16 @@ def index():
 
     return render_template('index.html', news=processed_news, btc_price=btc_price)
 
+def fetch_and_save_news():
+    api_key = "2c2282ebd04b825308aaf96ac92cd98b8e537058"
+    news_data = fetch_crypto_news(api_key, currency="BTC")
+    if news_data:
+        with open('news_data.json', 'w') as f:
+            json.dump(news_data, f, indent=4)
+        print("News data saved to news_data.json")
+    else:
+        print("Failed to fetch and save news data.")
+
 if __name__ == '__main__':
+    fetch_and_save_news() # Save the news data when app.py is run directly
     app.run(debug=True)
