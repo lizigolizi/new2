@@ -1,0 +1,230 @@
+Email - Brelidze,Lizi - Outlook
+/* CSS File */
+
+body {
+
+margin: 0;
+
+font-family: Arial, sans-serif;
+
+background-color: #f4f4f9;
+
+color: #333;
+
+}
+
+/* Splash Screen */
+
+.splash-screen {
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+position: fixed;
+
+top: 0;
+
+left: 0;
+
+width: 100%;
+
+height: 100%;
+
+background-color: #4fb5f0;
+
+z-index: 1000;
+
+transition: opacity 1s ease, visibility 1s ease;
+
+}
+
+.splash-logo {
+
+width: 300px;
+
+animation: fadeIn 2s ease;
+
+}
+
+@keyframes fadeIn {
+
+0% { opacity: 0; }
+
+100% { opacity: 1; }
+
+}
+
+/* Header */
+
+.main-header {
+
+display: flex;
+
+justify-content: space-between;
+
+align-items: center;
+
+background-color: #4fb5f0;
+
+padding: 1rem 2rem;
+
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.logo img {
+
+height: 50px;
+
+}
+
+.dropdown {
+
+position: relative;
+
+}
+
+.dropdown-btn {
+
+background: #fff;
+
+border: none;
+
+padding: 0.5rem 1rem;
+
+font-size: 1rem;
+
+cursor: pointer;
+
+border-radius: 8px;
+
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.dropdown-content {
+
+display: none;
+
+position: absolute;
+
+right: 0;
+
+background-color: #fff;
+
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+border-radius: 8px;
+
+overflow: hidden;
+
+}
+
+.dropdown:hover .dropdown-content {
+
+display: block;
+
+}
+
+.dropdown-content a {
+
+display: block;
+
+padding: 0.5rem 1rem;
+
+color: #333;
+
+text-decoration: none;
+
+transition: background 0.3s;
+
+}
+
+.dropdown-content a:hover {
+
+background-color: #e6f7ff;
+
+}
+
+/* Main Content */
+
+.graphs-section {
+
+display: flex;
+
+justify-content: space-around;
+
+padding: 2rem;
+
+}
+
+.graph {
+
+width: 45%;
+
+height: 300px;
+
+border: 1px solid #ddd;
+
+border-radius: 8px;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+background-color: #fff;
+
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.prediction-score {
+
+text-align: center;
+
+font-size: 1.2rem;
+
+margin: 1rem 0;
+
+}
+
+/* Data Sources */
+
+.data-sources {
+
+padding: 1rem 2rem;
+
+}
+
+.data-sources ul {
+
+list-style: none;
+
+padding: 0;
+
+}
+
+.data-sources li {
+
+margin: 0.5rem 0;
+
+}
+
+.data-sources a {
+
+color: #4fb5f0;
+
+text-decoration: none;
+
+}
+
+.data-sources a:hover {
+
+text-decoration: underline;
+
+}
