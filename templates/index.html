@@ -1,14 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DragonHacks Finance</title>
+    <title>Crypto News & Sentiment</title>
 </head>
 <body>
-    <h1>Welcome to DragonHacks Finance!</h1>
-    <p>This is your budget and finance tracker.</p>
+    <h1>Latest Bitcoin News & Sentiment</h1>
 
-    <a href="/">Go to Homepage</a>
+    {% if btc_price %}
+        <p>Current Bitcoin Price (USD): ${{ btc_price }}</p>
+    {% endif %}
+
+    <h2>News Feed</h2>
+    {% if news %}
+        {% for article in news %}
+            <div>
+                <h3>{{ article.title }}</h3>
+                <p>Source: {{ article.source }}</p>
+                <p>Sentiment: {{ article.sentiment }}</p>
+                <hr>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No news available.</p>
+    {% endif %}
+
+    <h2>Bitcoin Price Chart (Coming Soon!)</h2>
+    <div id="priceChart">
+        </div>
 </body>
 </html>
