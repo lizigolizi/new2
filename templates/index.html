@@ -1,31 +1,99 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Crypto News & Sentiment</title>
+    <title>Crypto Dashboard & Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: sans-serif; margin: 20px; line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto; background-color: #f0f0f0; }
+        h1, h2, h3, h4 { margin-bottom: 0.5em; margin-top: 1em; color: #333; }
+        h1 { text-align: center; color: #1a1a1a; }
+        h2 { border-bottom: 1px solid #ccc; padding-bottom: 0.3em; }
+        hr { display: none; }
+        p { margin-top: 0.5em; margin-bottom: 0.5em; color: #444; }
+        .container { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .error { color: #D8000C; background-color: #FFD2D2; padding: 10px; border: 1px solid #D8000C; border-radius: 5px; margin-top: 10px;}
+        .positive { color: #28a745; font-weight: bold; }
+        .negative { color: #dc3545; font-weight: bold; }
+        small { color: #555; font-size: 0.9em; }
+        strong { font-weight: 600; color: #000; }
+        .prediction-section { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px; background-color: #f9f9f9;}
+        .confidence-level { font-size: 0.9em; color: #555; margin-top: 8px; }
+        .footer { margin-top: 30px; text-align: center; font-size: 0.85em; color: #777; border-top: 1px solid #eee; padding-top: 15px; }
+        .disclaimer { margin-top: 20px; font-style: italic;}
+
+        @media (max-width: 600px) {
+            body { margin: 10px; }
+            .container { padding: 15px; }
+            h1 { font-size: 1.5em; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Latest Bitcoin News & Sentiment</h1>
+    <div class="container">
+        <h1>Crypto Dashboard & Prediction ({{ symbol or 'BTC' }})</h1>
 
-    {% if btc_price %}
-        <p>Current Bitcoin Price (USD): ${{ btc_price }}</p>
-    {% endif %}
+        <h2>Current Status</h2>
 
-    <h2>News Feed</h2>
-    {% if news %}
-        {% for article in news %}
-            <div>
-                <h3>{{ article.title }}</h3>
-                <p>Source: {{ article.source }}</p>
-                <p>Sentiment: {{ article.sentiment }}</p>
-                <hr>
-            </div>
-        {% endfor %}
-    {% else %}
-        <p>No news available.</p>
-    {% endif %}
+        {% if current_price_display != "N/A" %}
+            <p>Current Price: <strong>{{ current_price_display }}</strong></p>
+            <p class="confidence-level">Prediction Confidence Level: <strong>{{ dynamic_confidence_score or 'N/A' }}</strong> <small>(estimated based on news factors)</small></p>
+        {% else %}
+            <p>Current Price: Not Available</p>
+            <p class="confidence-level">Prediction Confidence Level: <strong>{{ dynamic_confidence_score or 'N/A' }}</strong> <small>(estimated based on news factors)</small></p>
+        {% endif %}
 
-    <h2>Bitcoin Price Chart (Coming Soon!)</h2>
-    <div id="priceChart">
+        <h2>Price Predictions</h2>
+
+        {% if error_message %}
+            <p class="error">Status: {{ error_message }}</p>
+        {% endif %}
+
+        <div class="prediction-section">
+            <h3>Next 1 Hour Prediction</h3>
+            {% if predicted_price_1h_display != "N/A" %}
+                <p>Predicted Price (+1h): <strong>{{ predicted_price_1h_display }}</strong></p>
+                {% if percentage_change_1h_display != "N/A" %}
+                    <p>Predicted Change: <span class="{{ 'positive' if percentage_change_1h_display.startswith('+') else ('negative' if percentage_change_1h_display.startswith('-') else '') }}">{{ percentage_change_1h_display }}</span></p>
+                {% else %}
+                    <p>Predicted Change: Calculation Failed</p>
+                {% endif %}
+            {% else %}
+                {% if not error_message %}<p>Prediction Not Available</p>{% endif %}
+            {% endif %}
         </div>
-</body>
+
+        <div class="prediction-section">
+            <h3>Next 12 Hours Prediction</h3>
+             {% if predicted_price_12h_display != "N/A" %}
+                <p>Predicted Price (+12h): <strong>{{ predicted_price_12h_display }}</strong></p>
+                {% if percentage_change_12h_display != "N/A" %}
+                    <p>Predicted Change: <span class="{{ 'positive' if percentage_change_12h_display.startswith('+') else ('negative' if percentage_change_12h_display.startswith('-') else '') }}">{{ percentage_change_12h_display }}</span></p>
+                {% else %}
+                    <p>Predicted Change: Calculation Failed</p>
+                {% endif %}
+            {% else %}
+                 {% if not error_message %}<p>Prediction Not Available</p>{% endif %}
+            {% endif %}
+        </div>
+
+         <div class="prediction-section">
+            <h3>Next 24 Hours Prediction</h3>
+             {% if predicted_price_24h_display != "N/A" %}
+                <p>Predicted Price (+24h): <strong>{{ predicted_price_24h_display }}</strong></p>
+                {% if percentage_change_24h_display != "N/A" %}
+                    <p>Predicted Change: <span class="{{ 'positive' if percentage_change_24h_display.startswith('+') else ('negative' if percentage_change_24h_display.startswith('-') else '') }}">{{ percentage_change_24h_display }}</span></p>
+                {% else %}
+                    <p>Predicted Change: Calculation Failed</p>
+                {% endif %}
+            {% else %}
+                 {% if not error_message %}<p>Prediction Not Available</p>{% endif %}
+            {% endif %}
+        </div>
+
+        <p class="disclaimer"><small>Disclaimer: Predictions based on HOURLY historical data. Not financial advice!</small></p>
+
+        <div class="footer">
+            Last Updated: {{ last_updated or 'N/A' }} | Processing Time: {{ processing_time or 'N/A' }}
+        </div>
+    </div> </body>
 </html>
