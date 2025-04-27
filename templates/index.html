@@ -32,26 +32,41 @@
     <p>Current Fear & Greed Index: <strong>{{ current_fng_value }}</strong></p>
 {% endif %}
 
-    <hr>
-    <hr>
-    <h2>Model Accuracy (Cross-Validation Estimate)</h2>
-    {% if accuracy_metrics %}
-        <p><small>Based on simulated historical forecasts (lower error is better):</small></p>
-        <ul>
-            {% if accuracy_metrics.mape is not none %}
-            <li>Average Mean Absolute Percentage Error (MAPE): {{ "{:,.2f}".format(accuracy_metrics.mape) }}%</li>
-            {% endif %}
-            {% if accuracy_metrics.mae is not none %}
-            <li>Average Mean Absolute Error (MAE): ${{ "{:,.2f}".format(accuracy_metrics.mae) }}</li>
-            {% endif %}
-        </ul>
-        <p><small>MAPE shows the average prediction error as a percentage. MAE shows the average error in absolute price units (e.g., dollars).</small></p>
-    {% elif error_message and "cross-validation failed" in error_message|lower %}
-         <p><small>Accuracy cross-validation could not be run due to an error.</small></p>
-    {% else %}
-         <p><small>Accuracy metrics not available (e.g., insufficient historical data for cross-validation).</small></p>
-    {% endif %}
-    <p class="disclaimer"><small>Note: These metrics show past simulated performance and do not guarantee future accuracy.</small></p>
+<hr>
+<hr>
+<h2>Model Accuracy (Cross-Validation Estimate)</h2>
+{% if accuracy_metrics %}
+    <p><small>Based on simulated historical forecasts (lower error is better):</small></p>
+    <ul>
+        {% if accuracy_metrics.mape is not none %}
+        <li>Average Mean Absolute Percentage Error (MAPE): {{ "{:,.2f}".format(accuracy_metrics.mape) }}%</li>
+        {% endif %}
+        {% if accuracy_metrics.mae is not none %}
+        <li>Average Mean Absolute Error (MAE): ${{ "{:,.2f}".format(accuracy_metrics.mae) }}</li>
+        {% endif %}
+        {# --- Display Estimated Historical Accuracy --- #}
+        {% if historical_accuracy_percent is not none %}
+        <li>Estimated Historical Accuracy: <strong>{{ "%.1f"|format(historical_accuracy_percent) }}%</strong> <small>(Derived from MAPE)</small></li>
+        {% endif %}
+    </ul>
+    <p><small>MAPE shows the average prediction error as a percentage. MAE shows the average error in absolute price units (e.g., dollars).</small></p>
+{% elif error_message and "cross-validation failed" in error_message|lower %}
+     <p><small>Accuracy cross-validation could not be run due to an error.</small></p>
+{% else %}
+     <p><small>Accuracy metrics not available (e.g., insufficient historical data for cross-validation).</small></p>
+{% endif %}
+<p class="disclaimer"><small>Note: These metrics show past simulated performance and do not guarantee future accuracy.</small></p>
+
+{# --- Display Prediction Input Confidence --- #}
+{% if data_confidence_score is not none %}
+<hr>
+<h2>Prediction Input Confidence</h2>
+<div class="confidence-score" style="font-size: 1.1em; margin-top: 0.5em;">
+     <p>Confidence Score: <strong>{{ data_confidence_score }}%</strong></p>
+     <p><small>(Estimate based on data availability, quality, and model uncertainty for this prediction run)</small></p>
+</div>
+{% endif %}
+{# --- End of Prediction Input Confidence --- #}
     <h2>Price Predictions (Based on Hourly Data)</h2>
 
     {% if error_message %}
