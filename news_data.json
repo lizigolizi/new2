@@ -1,0 +1,752 @@
+[
+    {
+        "kind": "news",
+        "domain": "newsbtc.com",
+        "source": {
+            "title": "NewsBTC",
+            "region": "en",
+            "domain": "newsbtc.com",
+            "path": null,
+            "type": "feed"
+        },
+        "title": "Bitcoin Perpetual Swaps Signal Short Bias Amid Price Rebound \u2013 Details",
+        "published_at": "2025-04-26T21:00:15Z",
+        "slug": "Bitcoin-Perpetual-Swaps-Signal-Short-Bias-Amid-Price-Rebound-Details",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            },
+            {
+                "code": "USDT",
+                "title": "Tether",
+                "slug": "tether",
+                "url": "https://cryptopanic.com/news/tether/"
+            },
+            {
+                "code": "OI",
+                "title": "O Intelligence Coin",
+                "slug": "o-intelligence-coin",
+                "url": "https://cryptopanic.com/news/o-intelligence-coin/"
+            }
+        ],
+        "id": 21362139,
+        "url": "https://cryptopanic.com/news/21362139/Bitcoin-Perpetual-Swaps-Signal-Short-Bias-Amid-Price-Rebound-Details?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T21:00:15Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    },
+    {
+        "kind": "news",
+        "domain": "bitcoin.com",
+        "source": {
+            "title": "Bitcoin.com",
+            "region": "en",
+            "domain": "bitcoin.com",
+            "path": null,
+            "type": "feed"
+        },
+        "title": "7 AI Chatbots Predict a Bullish End to 2025 for Bitcoin",
+        "published_at": "2025-04-26T20:30:52Z",
+        "slug": "7-AI-Chatbots-Predict-a-Bullish-End-to-2025-for-Bitcoin",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            }
+        ],
+        "id": 21362090,
+        "url": "https://cryptopanic.com/news/21362090/7-AI-Chatbots-Predict-a-Bullish-End-to-2025-for-Bitcoin?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T20:30:52Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    },
+    {
+        "kind": "news",
+        "domain": "thedefiant.io",
+        "source": {
+            "title": "DeFi News",
+            "region": "en",
+            "domain": "thedefiant.io",
+            "path": null,
+            "type": "feed"
+        },
+        "title": "El Salvador Halts Public Bitcoin Purchases, Eyes Cross-Border Crypto Sandbox, Reports $150 Million Profits",
+        "published_at": "2025-04-26T20:05:10Z",
+        "slug": "El-Salvador-Halts-Public-Bitcoin-Purchases-Eyes-Cross-Border-Crypto-Sandbox-Reports-150-Million-Profits",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            }
+        ],
+        "id": 21361971,
+        "url": "https://cryptopanic.com/news/21361971/El-Salvador-Halts-Public-Bitcoin-Purchases-Eyes-Cross-Border-Crypto-Sandbox-Reports-150-Million-Profits?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T20:05:10Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    },
+    {
+        "kind": "news",
+        "domain": "thedefiant.io",
+        "source": {
+            "title": "DeFi News",
+            "region": "en",
+            "domain": "thedefiant.io",
+            "path": null,
+            "type": "feed"
+        },
+        "title": "Bitcoin Surpasses Silver, Hits $94,000, Reaches 63% Crypto Market Cap Dominance at Four-Year High",
+        "published_at": "2025-04-26T20:05:10Z",
+        "slug": "Bitcoin-Surpasses-Silver-Hits-94000-Reaches-63-Crypto-Market-Cap-Dominance-at-Four-Year-High",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            }
+        ],
+        "id": 21361972,
+        "url": "https://cryptopanic.com/news/21361972/Bitcoin-Surpasses-Silver-Hits-94000-Reaches-63-Crypto-Market-Cap-Dominance-at-Four-Year-High?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T20:05:10Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    },
+    {
+        "kind": "news",
+        "domain": "coindoo.com",
+        "source": {
+            "title": "Coindoo.com",
+            "region": "en",
+            "domain": "coindoo.com",
+            "path": null,
+            "type": "feed"
+        },
+        "title": "Bitcoin Shows Strong Absorption of New Supply as Short-Term Holders Transition",
+        "published_at": "2025-04-26T20:02:16Z",
+        "slug": "Bitcoin-Shows-Strong-Absorption-of-New-Supply-as-Short-Term-Holders-Transition",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            }
+        ],
+        "id": 21361907,
+        "url": "https://cryptopanic.com/news/21361907/Bitcoin-Shows-Strong-Absorption-of-New-Supply-as-Short-Term-Holders-Transition?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T20:02:16Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    },
+    {
+        "kind": "news",
+        "domain": "@DaanCrypto",
+        "source": {
+            "title": "Twitter - daancrypto",
+            "region": "en",
+            "domain": "DaanCrypto",
+            "path": "@daancrypto",
+            "type": "twitter"
+        },
+        "title": "$BTC Bullish as long as it trades above $89K-$90K.\n\nWe will get a flush at some point which should then create a higher low. When and where is anyone's guess. \n\nI'm simply focussed on the market structure and higher timframe view. That's the easiest way to navigate this.",
+        "published_at": "2025-04-26T20:02:00Z",
+        "slug": "BTC-Bullish-as-long-as-it-trades-above-89K-90K-We-will-get-a-flush-at-some-point-which-should-then-create-a-higher-low-When-and-where-is-anyones-guess-Im-simply-focussed-on-the-market-structure-and-higher-timframe-view-Thats-the-easiest-way-to-navigate-this",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Osmosis allBTC",
+                "slug": "osmosis-allbtc",
+                "url": "https://cryptopanic.com/news/osmosis-allbtc/"
+            }
+        ],
+        "id": 21362042,
+        "url": "https://cryptopanic.com/news/21362042/BTC-Bullish-as-long-as-it-trades-above-89K-90K-We-will-get-a-flush-at-some-point-which-should-then-create-a-higher-low-When-and-where-is-anyones-guess-Im-simply-focussed-on-the-market-structure-and-higher-timframe-view-Thats-the-easiest-way-to-navigate-thi?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T20:02:00Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    },
+    {
+        "kind": "news",
+        "domain": "dailyhodl.com",
+        "source": {
+            "title": "The Daily Hodl",
+            "region": "en",
+            "domain": "dailyhodl.com",
+            "path": null,
+            "type": "feed"
+        },
+        "title": "Medical Tech Firm Semler Scientific Accumulates Another $10,000,000 Worth of Bitcoin, Now Holds 3,303 BTC",
+        "published_at": "2025-04-26T20:00:40Z",
+        "slug": "Medical-Tech-Firm-Semler-Scientific-Accumulates-Another-10000000-Worth-of-Bitcoin-Now-Holds-3303-BTC",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            }
+        ],
+        "id": 21361742,
+        "url": "https://cryptopanic.com/news/21361742/Medical-Tech-Firm-Semler-Scientific-Accumulates-Another-10000000-Worth-of-Bitcoin-Now-Holds-3303-BTC?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T20:00:40Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    },
+    {
+        "kind": "news",
+        "domain": "ambcrypto.com",
+        "source": {
+            "title": "AMBCrypto",
+            "region": "en",
+            "domain": "ambcrypto.com",
+            "path": null,
+            "type": "feed"
+        },
+        "title": "Bitcoin: Retail investors drive BTC\u2019s recovery \u2013 Next stop $100k?",
+        "published_at": "2025-04-26T20:00:32Z",
+        "slug": "Bitcoin-Retail-investors-drive-BTCs-recovery-Next-stop-100k",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            }
+        ],
+        "id": 21361906,
+        "url": "https://cryptopanic.com/news/21361906/Bitcoin-Retail-investors-drive-BTCs-recovery-Next-stop-100k?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T20:00:32Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    },
+    {
+        "kind": "news",
+        "domain": "livebitcoinnews.com",
+        "source": {
+            "title": "Live Bitcoin News",
+            "region": "en",
+            "domain": "livebitcoinnews.com",
+            "path": null,
+            "type": "feed"
+        },
+        "title": "Semler Scientific Boosts Bitcoin Holdings with $10 Million Purchase",
+        "published_at": "2025-04-26T20:00:27Z",
+        "slug": "Semler-Scientific-Boosts-Bitcoin-Holdings-with-10-Million-Purchase",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            }
+        ],
+        "id": 21361728,
+        "url": "https://cryptopanic.com/news/21361728/Semler-Scientific-Boosts-Bitcoin-Holdings-with-10-Million-Purchase?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T20:00:27Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    },
+    {
+        "kind": "news",
+        "domain": "u.today",
+        "votes": {
+            "negative": 0,
+            "positive": 1,
+            "important": 1,
+            "liked": 1,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        },
+        "source": {
+            "title": "U.Today",
+            "region": "en",
+            "domain": "u.today",
+            "path": null,
+            "type": "feed"
+        },
+        "title": "$500,000,000 in Bitcoin Through Coinbase \u2014 What's Happening?",
+        "published_at": "2025-04-26T20:00:00Z",
+        "slug": "500000000-in-Bitcoin-Through-Coinbase-Whats-Happening",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            }
+        ],
+        "id": 21361994,
+        "url": "https://cryptopanic.com/news/21361994/500000000-in-Bitcoin-Through-Coinbase-Whats-Happening?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T20:00:00Z"
+    },
+    {
+        "kind": "news",
+        "domain": "thecoinrepublic.com",
+        "source": {
+            "title": "The Coin Republic",
+            "region": "en",
+            "domain": "thecoinrepublic.com",
+            "path": null,
+            "type": "feed"
+        },
+        "title": "US-China Economic Cold War Impact On Bitcoin Price",
+        "published_at": "2025-04-26T19:34:00Z",
+        "slug": "US-China-Economic-Cold-War-Impact-On-Bitcoin-Price",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            }
+        ],
+        "id": 21361701,
+        "url": "https://cryptopanic.com/news/21361701/US-China-Economic-Cold-War-Impact-On-Bitcoin-Price?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T19:34:00Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    },
+    {
+        "kind": "media",
+        "domain": "youtube.com",
+        "source": {
+            "title": "Bitcoin Magazine",
+            "region": "en",
+            "domain": "youtube.com",
+            "path": null,
+            "type": "media"
+        },
+        "title": "Tether, SoftBank, & Cantor Ignite the Corporate BTC Supercycle | Bitcoin Backstage feat. Cathie Wood",
+        "published_at": "2025-04-26T19:29:31Z",
+        "slug": "Tether-SoftBank-Cantor-Ignite-the-Corporate-BTC-Supercycle-Bitcoin-Backstage-feat-Cathie-Wood",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            },
+            {
+                "code": "USDT",
+                "title": "Tether",
+                "slug": "tether",
+                "url": "https://cryptopanic.com/news/tether/"
+            }
+        ],
+        "id": 21361713,
+        "url": "https://cryptopanic.com/news/21361713/Tether-SoftBank-Cantor-Ignite-the-Corporate-BTC-Supercycle-Bitcoin-Backstage-feat-Cathie-Wood?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T19:29:31Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    },
+    {
+        "kind": "media",
+        "domain": "youtube.com",
+        "source": {
+            "title": "Simply Bitcoin",
+            "region": "en",
+            "domain": "youtube.com",
+            "path": null,
+            "type": "media"
+        },
+        "title": "Bitcoin Conspiracy: Government Buys While Warren Dismisses It!",
+        "published_at": "2025-04-26T19:00:43Z",
+        "slug": "Bitcoin-Conspiracy-Government-Buys-While-Warren-Dismisses-It",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            }
+        ],
+        "id": 21361532,
+        "url": "https://cryptopanic.com/news/21361532/Bitcoin-Conspiracy-Government-Buys-While-Warren-Dismisses-It?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T19:00:43Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    },
+    {
+        "kind": "media",
+        "domain": "youtube.com",
+        "source": {
+            "title": "BTC Sessions",
+            "region": "en",
+            "domain": "youtube.com",
+            "path": null,
+            "type": "media"
+        },
+        "title": "NEW $900B Bitcoin RIVAL EXPOSED \u2013 It\u2019s Not Who You Think...",
+        "published_at": "2025-04-26T19:00:31Z",
+        "slug": "NEW-900B-Bitcoin-RIVAL-EXPOSED-Its-Not-Who-You-Think",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            }
+        ],
+        "id": 21361679,
+        "url": "https://cryptopanic.com/news/21361679/NEW-900B-Bitcoin-RIVAL-EXPOSED-Its-Not-Who-You-Think?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T19:00:31Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    },
+    {
+        "kind": "news",
+        "domain": "coindoo.com",
+        "source": {
+            "title": "Coindoo.com",
+            "region": "en",
+            "domain": "coindoo.com",
+            "path": null,
+            "type": "feed"
+        },
+        "title": "Bitcoin\u2019s Dormant Supply Awakens: Bullish Signal",
+        "published_at": "2025-04-26T19:00:01Z",
+        "slug": "Bitcoins-Dormant-Supply-Awakens-Bullish-Signal",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            }
+        ],
+        "id": 21361309,
+        "url": "https://cryptopanic.com/news/21361309/Bitcoins-Dormant-Supply-Awakens-Bullish-Signal?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T19:00:01Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    },
+    {
+        "kind": "news",
+        "domain": "coindoo.com",
+        "source": {
+            "title": "Coindoo.com",
+            "region": "en",
+            "domain": "coindoo.com",
+            "path": null,
+            "type": "feed"
+        },
+        "title": "Arthur Hayes: Bitcoin Poised to Benefit From Trade War Fallout",
+        "published_at": "2025-04-26T18:30:46Z",
+        "slug": "Arthur-Hayes-Bitcoin-Poised-to-Benefit-From-Trade-War-Fallout",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            }
+        ],
+        "id": 21361261,
+        "url": "https://cryptopanic.com/news/21361261/Arthur-Hayes-Bitcoin-Poised-to-Benefit-From-Trade-War-Fallout?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T18:30:46Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    },
+    {
+        "kind": "news",
+        "domain": "finbold.com",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 1,
+            "comments": 0
+        },
+        "source": {
+            "title": "Finbold",
+            "region": "en",
+            "domain": "finbold.com",
+            "path": null,
+            "type": "feed"
+        },
+        "title": "Robert Kiyosaki\u2019s portfolio performance since trade war started",
+        "published_at": "2025-04-26T18:28:55Z",
+        "slug": "Robert-Kiyosakis-portfolio-performance-since-trade-war-started",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            }
+        ],
+        "id": 21361251,
+        "url": "https://cryptopanic.com/news/21361251/Robert-Kiyosakis-portfolio-performance-since-trade-war-started?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T18:28:55Z"
+    },
+    {
+        "kind": "news",
+        "domain": "feeds2.benzinga.com",
+        "source": {
+            "title": "Benzinga",
+            "region": "en",
+            "domain": "feeds2.benzinga.com",
+            "path": null,
+            "type": "feed"
+        },
+        "title": "SEC Chair Paul Atkins Says Crypto Deserves Clear Regulatory Rules, Praises 'Crypto Mom' Hester Peirce's Efforts",
+        "published_at": "2025-04-26T18:24:33Z",
+        "slug": "SEC-Chair-Paul-Atkins-Says-Crypto-Deserves-Clear-Regulatory-Rules-Praises-Crypto-Mom-Hester-Peirces-Efforts",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            },
+            {
+                "code": "MSTR",
+                "title": "MSTR2100",
+                "slug": "mstr2100",
+                "url": "https://cryptopanic.com/news/mstr2100/"
+            }
+        ],
+        "id": 21361275,
+        "url": "https://cryptopanic.com/news/21361275/SEC-Chair-Paul-Atkins-Says-Crypto-Deserves-Clear-Regulatory-Rules-Praises-Crypto-Mom-Hester-Peirces-Efforts?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T18:24:33Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    },
+    {
+        "kind": "news",
+        "domain": "thedefiant.io",
+        "source": {
+            "title": "DeFi News",
+            "region": "en",
+            "domain": "thedefiant.io",
+            "path": null,
+            "type": "feed"
+        },
+        "title": "Firms Are Adding Solana to Corporate Treasuries, But Bitcoin Still Leads the Way",
+        "published_at": "2025-04-26T18:11:06Z",
+        "slug": "Firms-Are-Adding-Solana-to-Corporate-Treasuries-But-Bitcoin-Still-Leads-the-Way",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            },
+            {
+                "code": "SOL",
+                "title": "Solana",
+                "slug": "solana",
+                "url": "https://cryptopanic.com/news/solana/"
+            }
+        ],
+        "id": 21361219,
+        "url": "https://cryptopanic.com/news/21361219/Firms-Are-Adding-Solana-to-Corporate-Treasuries-But-Bitcoin-Still-Leads-the-Way?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T18:11:06Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    },
+    {
+        "kind": "news",
+        "domain": "coingape.com",
+        "source": {
+            "title": "CoinGape",
+            "region": "en",
+            "domain": "coingape.com",
+            "path": null,
+            "type": "feed"
+        },
+        "title": "Peter Schiff Explains How Donald Trump\u2019s Tariffs Contradicts The President\u2019s Bitcoin Plans",
+        "published_at": "2025-04-26T18:09:54Z",
+        "slug": "Peter-Schiff-Explains-How-Donald-Trumps-Tariffs-Contradicts-The-Presidents-Bitcoin-Plans",
+        "currencies": [
+            {
+                "code": "BTC",
+                "title": "Bitcoin",
+                "slug": "bitcoin",
+                "url": "https://cryptopanic.com/news/bitcoin/"
+            }
+        ],
+        "id": 21361204,
+        "url": "https://cryptopanic.com/news/21361204/Peter-Schiff-Explains-How-Donald-Trumps-Tariffs-Contradicts-The-Presidents-Bitcoin-Plans?mtm_campaign=API-OFA",
+        "created_at": "2025-04-26T18:09:54Z",
+        "votes": {
+            "negative": 0,
+            "positive": 0,
+            "important": 0,
+            "liked": 0,
+            "disliked": 0,
+            "lol": 0,
+            "toxic": 0,
+            "saved": 0,
+            "comments": 0
+        }
+    }
+]

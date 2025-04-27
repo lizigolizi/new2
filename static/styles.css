@@ -1,0 +1,12 @@
+body { font-family: sans-serif; margin: 20px; line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto; }
+h1, h2, h3, h4 { margin-bottom: 0.5em; margin-top: 1em; color: #333; }
+h1 { text-align: center; color: #1a1a1a; }
+hr { border: 0; border-top: 1px solid #eee; margin: 1.5em 0; }
+p { margin-top: 0.5em; margin-bottom: 0.5em; color: #444; }
+.error { color: #D8000C; background-color: #FFD2D2; padding: 10px; border: 1px solid #D8000C; border-radius: 5px; margin-top: 10px;}
+.positive { color: #28a745; font-weight: bold; } /* Bootstrap green */
+.negative { color: #dc3545; font-weight: bold; } /* Bootstrap red */
+small { color: #555; font-size: 0.9em; }
+strong { font-weight: 600; color: #000; }
+.prediction-section { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px; background-color: #f9f9f9;}
+.disclaimer { margin-top: 20px; font-style: italic;}
