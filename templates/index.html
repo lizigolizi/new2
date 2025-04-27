@@ -1,34 +1,108 @@
-<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Crypto News & Sentiment</title>
+    <title>Crypto Dashboard & Prediction</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto; }
+        h1, h2, h3, h4 { margin-bottom: 0.5em; margin-top: 1em; color: #333; }
+        h1 { text-align: center; color: #1a1a1a; }
+        hr { border: 0; border-top: 1px solid #eee; margin: 1.5em 0; }
+        p { margin-top: 0.5em; margin-bottom: 0.5em; color: #444; }
+        .error { color: #D8000C; background-color: #FFD2D2; padding: 10px; border: 1px solid #D8000C; border-radius: 5px; margin-top: 10px;}
+        .positive { color: #28a745; font-weight: bold; } /* Bootstrap green */
+        .negative { color: #dc3545; font-weight: bold; } /* Bootstrap red */
+        small { color: #555; font-size: 0.9em; }
+        strong { font-weight: 600; color: #000; }
+        .prediction-section { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px; background-color: #f9f9f9;}
+        .disclaimer { margin-top: 20px; font-style: italic;}
+    </style>
 </head>
 <body>
-    <h1>Latest Bitcoin News & Sentiment</h1>
+    <h1>Crypto Dashboard & Prediction ({{ symbol or 'BTC' }})</h1>
 
-    {% if btc_price %}
-        <p>Current Bitcoin Price (USD): ${{ btc_price }}</p>
-    {% endif %}
+    <hr>
+    <h2>Current Status</h2>
 
-    <h2>News Feed</h2>
-    {% if news %}
-        {% for article in news %}
-            <div>
-                <h3>{{ article.title }}</h3>
-                <p>Source: {{ article.source }}</p>
-                <p>Sentiment: {{ article.sentiment }}</p>
-                <hr>
-            </div>
-        {% endfor %}
+    {% if current_price is not none %}
+        <p>Current Price: <strong>${{ "{:,.2f}".format(current_price) }}</strong></p>
     {% else %}
-        <p>No news available.</p>
+        <p>Current Price: Not Available</p>
+    {% endif %}
+    {% if current_fng_value is not none %}
+    <p>Current Fear & Greed Index: <strong>{{ current_fng_value }}</strong></p>
+{% endif %}
+
+    <hr>
+    <hr>
+    <h2>Model Accuracy (Cross-Validation Estimate)</h2>
+    {% if accuracy_metrics %}
+        <p><small>Based on simulated historical forecasts (lower error is better):</small></p>
+        <ul>
+            {% if accuracy_metrics.mape is not none %}
+            <li>Average Mean Absolute Percentage Error (MAPE): {{ "{:,.2f}".format(accuracy_metrics.mape) }}%</li>
+            {% endif %}
+            {% if accuracy_metrics.mae is not none %}
+            <li>Average Mean Absolute Error (MAE): ${{ "{:,.2f}".format(accuracy_metrics.mae) }}</li>
+            {% endif %}
+        </ul>
+        <p><small>MAPE shows the average prediction error as a percentage. MAE shows the average error in absolute price units (e.g., dollars).</small></p>
+    {% elif error_message and "cross-validation failed" in error_message|lower %}
+         <p><small>Accuracy cross-validation could not be run due to an error.</small></p>
+    {% else %}
+         <p><small>Accuracy metrics not available (e.g., insufficient historical data for cross-validation).</small></p>
+    {% endif %}
+    <p class="disclaimer"><small>Note: These metrics show past simulated performance and do not guarantee future accuracy.</small></p>
+    <h2>Price Predictions (Based on Hourly Data)</h2>
+
+    {% if error_message %}
+        <p class="error">Status: {{ error_message }}</p>
     {% endif %}
 
-    <h2>Bitcoin Price Chart (Coming Soon!)</h2>
-    <div id="priceChart">
-        </div>
-</body>
+    <div class="prediction-section">
+        <h3>Next 1 Hour Prediction</h3>
+        {% if predicted_price_1h is not none %}
+            <p>Predicted Price (+1h): <strong>${{ "{:,.2f}".format(predicted_price_1h) }}</strong></p>
+            {% if percentage_change_1h is not none %}
+                <p>Predicted Change: <span class="{{ 'positive' if percentage_change_1h >= 0 else 'negative' }}">{{ "{:,.2f}".format(percentage_change_1h) }}%</span></p>
+            {% else %}
+                 <p>Predicted Change: Calculation Failed</p>
+            {% endif %}
+        {% else %}
+            {% if not error_message %}<p>Prediction Not Available</p>{% endif %}
+        {% endif %}
+    </div>
+
+    <div class="prediction-section">
+        <h3>Next 12 Hours Prediction</h3>
+         {% if predicted_price_12h is not none %}
+            <p>Predicted Price (+12h): <strong>${{ "{:,.2f}".format(predicted_price_12h) }}</strong></p>
+            {% if percentage_change_12h is not none %}
+                <p>Predicted Change: <span class="{{ 'positive' if percentage_change_12h >= 0 else 'negative' }}">{{ "{:,.2f}".format(percentage_change_12h) }}%</span></p>
+            {% else %}
+                 <p>Predicted Change: Calculation Failed</p>
+            {% endif %}
+        {% else %}
+             {% if not error_message %}<p>Prediction Not Available</p>{% endif %}
+        {% endif %}
+    </div>
+
+     <div class="prediction-section">
+        <h3>Next 24 Hours Prediction</h3>
+         {% if predicted_price_24h is not none %}
+            <p>Predicted Price (+24h): <strong>${{ "{:,.2f}".format(predicted_price_24h) }}</strong></p>
+            {% if percentage_change_24h is not none %}
+                <p>Predicted Change: <span class="{{ 'positive' if percentage_change_24h >= 0 else 'negative' }}">{{ "{:,.2f}".format(percentage_change_24h) }}%</span></p>
+            {% else %}
+                 <p>Predicted Change: Calculation Failed</p>
+            {% endif %}
+        {% else %}
+             {% if not error_message %}<p>Prediction Not Available</p>{% endif %}
+        {% endif %}
+    </div>
+
+    <p class="disclaimer"><small>Disclaimer: Predictions based on a simplified Prophet model using recent HOURLY historical data (if available) and volume. For hackathon demonstration purposes only. Not financial advice.</small></p>
+
+    <hr>
+    
+    </body>
 </html>
-=======
->>>>>>> Stashed changes

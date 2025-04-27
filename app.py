@@ -1,108 +1,283 @@
+# app.py
+
+# --- Keep imports and Flask app setup as before ---
+from prophet.diagnostics import cross_validation, performance_metrics
 from flask import Flask, render_template
-<<<<<<< Updated upstream
-from textblob import TextBlob
-import requests
-import json
-
-CRYPTOPANIC_API_KEY = "2c2282ebd04b825308aaf96ac92cd98b8e537058"  # Replace with your actual API key
-
-def fetch_crypto_news(api_key, currency="BTC", page=1):
-    """Fetches cryptocurrency news for a specific currency from CryptoPanic."""
-    url = f"https://cryptopanic.com/api/v1/posts/?auth_token={api_key}&currencies={currency}&public=true&page={page}"
-    try:
-        print(f"Fetching news from: {url}")  # This will show you the URL being requested
-        response = requests.get(url)
-        response.raise_for_status()  # Check if the request was successful (status code 200)
-        data = response.json()
-        # print(json.dumps(data, indent=4)) # Uncomment this to see the raw JSON response
-        return data.get('results', [])
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching news: {e}")
-        return []
-
-COINGECKO_BASE_URL = "https://api.coingecko.com/api/v3"
-
-def fetch_crypto_price(coin_id="bitcoin", vs_currency="usd"):
-    """Fetches the current price of a cryptocurrency from CoinGecko."""
-    url = f"{COINGECKO_BASE_URL}/simple/price?ids={coin_id}&vs_currencies={vs_currency}"
-    try:
-        print(f"Fetching price from: {url}") # Show the price API URL
-        response = requests.get(url)
-        response.raise_for_status()
-        data = response.json()
-        # print(json.dumps(data, indent=4)) # Uncomment to see the raw JSON response
-        return data.get(coin_id, {}).get(vs_currency)
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching price: {e}")
-        return None
-=======
-import requests
-import json
 import pandas as pd
-from datetime import datetime
->>>>>>> Stashed changes
+from prophet import Prophet
+# ... other imports ...
+try:
+    from data import (fetch_crypto_news, fetch_crypto_price,
+                      fetch_gemini_historical_data, fetch_current_fear_greed,
+                      fetch_historical_fear_greed)
+    print("--- Successfully imported functions from data.py ---") # Success Message
+except ImportError as e:
+    # ... (Keep your fallback dummy functions) ...
+    print(f"!!! ERROR importing from data.py: {e} !!!")
+
 
 app = Flask(__name__)
 
-def fetch_gemini_historical_data(symbol, timeframe='1day'):
-    base_url = "https://api.gemini.com/v2"
-    endpoint = f"/candles/{symbol}/hist/{timeframe}"
-    url = f"{base_url}{endpoint}"
-    try:
-        response = requests.get(url)
-        response.raise_for_status()  # Raise an exception for bad status codes
-        data = json.loads(response.text)
-        # Gemini API returns data as [timestamp_ms, open, high, low, close]
-        # Format for Chart.js: [timestamp_ms, close_price]
-        prices = [[entry[0], float(entry[4])] for entry in data]
-        # Sort by timestamp (Gemini usually returns in descending order)
-        prices.sort(key=lambda x: x[0])
-        return prices
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching Gemini data for {symbol}: {e}")
-        return None
-    except json.JSONDecodeError as e:
-        print(f"Error decoding JSON response for {symbol}: {e}")
-        return None
-
-def simple_moving_average_prediction(prices_data, window=5):
-    if not prices_data or len(prices_data) < window:
-        return None
-    prices = pd.Series([price for _, price in prices_data])
-    sma = prices.rolling(window=window).mean().iloc[-1]
-    return sma
-
 @app.route('/')
 def index():
-<<<<<<< Updated upstream
-    news_articles = fetch_crypto_news(CRYPTOPANIC_API_KEY, currency="BTC")
-    btc_price = fetch_crypto_price(coin_id="bitcoin")
-    processed_news = []
+    # --- Configuration ---
+    symbol = 'BTCUSD'
+    coin_gecko_id = 'bitcoin'
+    timeframe = '1hr'
 
-    if news_articles:
-        for article in news_articles:
-            title = article['title']
-            source = article['source']['title']
-            analysis = TextBlob(title)
-            sentiment_polarity = analysis.sentiment.polarity
-            sentiment_label = "neutral"
-            if sentiment_polarity > 0.01:
-                sentiment_label = "positive"
-            elif sentiment_polarity < -0.01:
-                sentiment_label = "negative"
-            processed_news.append({'title': title, 'source': source, 'sentiment': sentiment_label})
+    # --- 1. FETCH DATA ---
+    historical_data = fetch_gemini_historical_data(symbol, timeframe=timeframe)
+    current_price = fetch_crypto_price(coin_id=coin_gecko_id)
+    current_fng_data = fetch_current_fear_greed()
+    current_fng_value = current_fng_data.get('value') if current_fng_data else None
 
-    return render_template('index.html', news=processed_news, btc_price=btc_price)
-=======
-    symbol = 'BTCUSD'  # Example: Bitcoin/USD on Gemini
-    historical_data = fetch_gemini_historical_data(symbol, timeframe='1day')
-    print(f"Historical Data in Flask: {historical_data}") # For debugging
-    predicted_price = None
-    if historical_data:
-        predicted_price = simple_moving_average_prediction(historical_data)
+    # --- Initialize variables ---
+    df_prophet = None # Holds price/volume initially
+    df_merged = None  # Will hold the final data for fitting
+    fng_available = False # Flag to track if F&G data was successfully merged
+    predicted_price_1h = None
+    predicted_price_12h = None
+    predicted_price_24h = None
+    percentage_change_1h = None
+    percentage_change_12h = None
+    percentage_change_24h = None
+    error_message = None
 
-    return render_template('index.html', historical_data=historical_data, predicted_price=predicted_price, symbol=symbol)
->>>>>>> Stashed changes
+    # --- 2. PROCESS PRICE/VOLUME DATA ---
+    min_data_points = 25
+    if historical_data and len(historical_data) >= min_data_points:
+        try:
+            print("Processing Price/Volume data...")
+            df = pd.DataFrame(historical_data, columns=['timestamp_ms', 'y', 'volume'])
+            df['ds'] = pd.to_datetime(df['timestamp_ms'], unit='ms')
+            df_prophet = df[['ds', 'y', 'volume']] # Base dataframe
+        except Exception as e:
+            error_message = "Error processing historical price/volume data."
+            print(f"!!! {error_message}: {e} !!!")
+            df_prophet = None
+    # ... (keep elif/else blocks for handling insufficient/failed price data fetch) ...
+    elif historical_data is None: error_message = f"Failed to fetch historical data from API for {symbol}/{timeframe}."
+    else: error_message = f"Insufficient historical data ({len(historical_data)} points)."
 
+
+    # --- 2b. FETCH & ATTEMPT MERGE FEAR/GREED DATA ---
+    if df_prophet is not None: # Only try if price/volume data is OK
+        start_date = df_prophet['ds'].min()
+        end_date = df_prophet['ds'].max()
+        df_fng = fetch_historical_fear_greed(start_date, end_date) # Fetch F&G history
+
+        if df_fng is not None:
+            try:
+                print("Attempting to merge Fear/Greed data...")
+                df_prophet['ds_date'] = df_prophet['ds'].dt.normalize() # Date for merging
+                # Left merge keeps all price/vol rows, adds F&G where date matches
+                temp_merged = pd.merge(df_prophet, df_fng, on='ds_date', how='left')
+                # Apply daily F&G value forward to fill hourly gaps/weekends
+                temp_merged['fear_greed'] = temp_merged['fear_greed'].ffill()
+                # Fill any remaining NaNs at the beginning
+                temp_merged['fear_greed'] = temp_merged['fear_greed'].bfill()
+
+                if temp_merged['fear_greed'].isnull().any():
+                     print("!!! Warning: Could not fill all missing Fear/Greed values. Filling remaining with 50. !!!")
+                     temp_merged['fear_greed'].fillna(50, inplace=True)
+
+                # Select final columns for the model fitting dataframe
+                df_merged = temp_merged[['ds', 'y', 'volume', 'fear_greed']]
+                fng_available = True # Set flag indicating F&G is included
+                print(f"Successfully merged F&G data. Fitting DataFrame has columns: {list(df_merged.columns)}")
+
+            except Exception as e:
+                if not error_message: error_message = "Error merging Fear/Greed data."
+                print(f"!!! {error_message}: {e} !!!")
+                df_merged = df_prophet # Fallback to use only price/volume
+                fng_available = False
+        else:
+             print("--- Proceeding without Fear/Greed data (fetch failed or no data). ---")
+             df_merged = df_prophet # Use original price/volume df
+             fng_available = False
+    else:
+         # df_prophet was None initially, so df_merged remains None
+         df_merged = None
+
+
+    # --- 3. MODEL TRAINING & PREDICTION ---
+    # Check the DataFrame THAT WILL BE USED FOR FITTING
+    if df_merged is not None:
+        try:
+            print("Instantiating Prophet model...")
+            model = Prophet()
+            print("Adding 'volume' regressor...")
+            model.add_regressor('volume') # Always add volume
+
+            # *** CRITICAL FIX: Only add fear_greed regressor if it's actually available ***
+            if fng_available and 'fear_greed' in df_merged.columns:
+                 print("Adding 'fear_greed' regressor...")
+                 model.add_regressor('fear_greed')
+            else:
+                 print("Fitting model WITHOUT 'fear_greed' regressor.")
+
+            print(f"Fitting model on DataFrame with columns: {list(df_merged.columns)}")
+            model.fit(df_merged) # Fit on df_merged (may or may not have fear_greed)
+
+            print("Making future dataframe...")
+            future = model.make_future_dataframe(periods=24, freq='h') # Use 'h'
+
+            # --- Add FUTURE values for ALL active regressors ---
+            if not df_merged['volume'].empty: future['volume'] = df_merged['volume'].iloc[-1]
+            else: future['volume'] = 0
+
+            # Only add future fear_greed if the regressor was added to the model
+            if fng_available and 'fear_greed' in df_merged.columns:
+                if current_fng_value is not None:
+                    future['fear_greed'] = float(current_fng_value)
+                    print(f"Added current F&G value ({current_fng_value}) to future dataframe.")
+                elif 'fear_greed' in df_merged.columns and not df_merged['fear_greed'].empty: # Check if column exists and isn't empty
+                    future['fear_greed'] = df_merged['fear_greed'].iloc[-1] # Fallback to last known
+                    print(f"Warning: Current F&G unavailable. Using last historical value ({future['fear_greed'].iloc[0]}) for future.")
+                else:
+                    future['fear_greed'] = 50 # Absolute fallback
+                    print("Warning: Current & historical F&G unavailable. Using 50 for future.")
+            # --- End Adding Future Regressors ---
+
+            print("Predicting...")
+            forecast = model.predict(future)
+
+            # Extract predictions (check length)
+            if len(forecast) >= 24:
+                 predicted_price_1h = forecast['yhat'].iloc[-24]
+                 predicted_price_12h = forecast['yhat'].iloc[-13]
+                 predicted_price_24h = forecast['yhat'].iloc[-1]
+                 # ... print statements ...
+            else:
+                 if not error_message: error_message = "Prediction generated incomplete forecast."
+                 print(f"!!! {error_message} Forecast length: {len(forecast)} !!!")
+
+
+        except Exception as e:
+            if not error_message: error_message = "Prediction model failed."
+            # Print the specific exception from Prophet/Pandas
+            print(f"!!! {error_message}: {e} !!!")
+            # Print traceback for detailed debugging if needed
+            import traceback
+            traceback.print_exc()
+            predicted_price_1h = predicted_price_12h = predicted_price_24h = None
+
+
+    # --- 4. CALCULATE PERCENTAGE CHANGES ---
+    # ... (Keep existing percentage change logic) ...
+    print("Calculating percentage changes...")
+    if current_price is not None and current_price != 0:
+        # ... calculations ...
+        if predicted_price_1h is not None:
+            try: percentage_change_1h = ((predicted_price_1h - current_price) / current_price) * 100
+            except Exception as e: print(f"Error calc % change 1h: {e}")
+        # etc for 12h, 24h
+        if predicted_price_12h is not None:
+            try: percentage_change_12h = ((predicted_price_12h - current_price) / current_price) * 100
+            except Exception as e: print(f"Error calc % change 12h: {e}")
+        if predicted_price_24h is not None:
+            try: percentage_change_24h = ((predicted_price_24h - current_price) / current_price) * 100
+            except Exception as e: print(f"Error calc % change 24h: {e}")
+    # ... (keep handling for current_price being 0 or None) ...
+
+
+    # --- 5. RENDER TEMPLATE ---
+    print("Rendering template...")
+    return render_template('index.html',
+                           # ... pass all variables ...
+                           symbol=symbol,
+                           current_price=current_price,
+                           current_fng_value=current_fng_value, # Pass F&G value if you want to display it
+                           predicted_price_1h=predicted_price_1h,
+                           predicted_price_12h=predicted_price_12h,
+                           predicted_price_24h=predicted_price_24h,
+                           percentage_change_1h=percentage_change_1h,
+                           percentage_change_12h=percentage_change_12h,
+                           percentage_change_24h=percentage_change_24h,
+                           error_message=error_message
+                           )
+# --- (Existing code: Fit the main model) ---
+    if df_merged is not None:
+        try:
+            print("Fitting Prophet model...")
+            model = Prophet()
+            model.add_regressor('volume')
+            if fng_available and 'fear_greed' in df_merged.columns:
+                 model.add_regressor('fear_greed')
+            model.fit(df_merged) # Fit on the full available history
+
+            # --- 3b. ACCURACY TESTING (Prophet Cross-Validation) ---
+            accuracy_metrics = None # Initialize
+            # Only run CV if you have a reasonable amount of data (e.g., > 3x horizon)
+            # Let's say minimum ~72 hours (3 days) for a 24h horizon test
+            if len(df_merged) > 72:
+                try:
+                    # --- Define CV Parameters (ADJUST THESE based on your data!) ---
+                    # 'initial': How much data to use for the FIRST training set.
+                    # 'period': How often to shift the cutoff point forward.
+                    # 'horizon': How far ahead to predict from each cutoff.
+                    # *Units should match your data frequency (hours)*
+
+                    # Example: If you have ~1400 hours (~60 days) of data
+                    # Train on first 1000 hours (~41 days)
+                    initial_train_period = '1000 hours'
+                    # Make a new prediction every 168 hours (7 days)
+                    period_between_forecasts = '168 hours'
+                    # Predict 24 hours ahead each time
+                    forecast_horizon = '24 hours'
+
+                    print(f"Running Prophet cross-validation (initial='{initial_train_period}', period='{period_between_forecasts}', horizon='{forecast_horizon}')...")
+                    # This part can take some time to run!
+                    # parallel="processes" might speed it up if you have multiple CPU cores
+                    df_cv = cross_validation(model, initial=initial_train_period, period=period_between_forecasts, horizon=forecast_horizon, parallel="processes", disable_tqdm=True)
+
+                    # Calculate standard performance metrics (MAPE, MAE, RMSE etc.)
+                    df_p = performance_metrics(df_cv)
+                    print("\nCross-Validation Performance Metrics (Sample):")
+                    # Display metrics for different horizons up to 24h
+                    print(df_p[['horizon', 'mape', 'mae', 'rmse']].head())
+
+                    # Let's calculate overall average MAPE and MAE to display simply
+                    # MAPE: Mean Absolute Percentage Error (lower is better)
+                    # MAE: Mean Absolute Error (in price units, lower is better)
+                    avg_mape = df_p['mape'].mean() * 100 # Show as percentage
+                    avg_mae = df_p['mae'].mean()
+                    accuracy_metrics = {'mape': avg_mape, 'mae': avg_mae} # Store metrics
+                    print(f"Average MAPE across horizons: {avg_mape:.2f}%")
+                    print(f"Average MAE across horizons: {avg_mae:.2f}")
+
+                except Exception as cv_e:
+                    print(f"!!! Cross-validation failed: {cv_e} !!!")
+                    if not error_message: error_message = "Accuracy cross-validation failed."
+                    accuracy_metrics = None # Ensure it's None on failure
+            else:
+                print(f"--- Skipping cross-validation due to insufficient data ({len(df_merged)} rows) ---")
+                if not error_message: error_message = "Not enough historical data for accuracy test."
+
+
+            # --- NOW continue with predicting the actual future ---
+            print("Making future dataframe for final prediction...")
+            future = model.make_future_dataframe(periods=24, freq='h')
+            # ... (Add future regressors: volume, fear_greed) ...
+            # ... (forecast = model.predict(future)) ...
+            # ... (Extract predicted_price_1h, _12h, _24h) ...
+
+        except Exception as e:
+            # ... (Existing error handling for fitting/prediction) ...
+            pass # Ensure accuracy_metrics remains None if fit fails
+
+    # --- (Existing code: Calculate percentage changes) ---
+    # ...
+
+    # --- 5. RENDER TEMPLATE (Pass the metrics) ---
+    print("Rendering template...")
+    return render_template('index.html',
+                           # ... (pass other variables: symbol, current_price, predictions, etc.) ...
+                           accuracy_metrics=accuracy_metrics, # Pass the calculated metrics dict
+                           error_message=error_message
+                           )
+
+
+# --- Main execution block ---
 if __name__ == '__main__':
     app.run(debug=True)
